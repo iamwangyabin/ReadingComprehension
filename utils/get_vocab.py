@@ -25,7 +25,7 @@ import sys
 import json
 
 from itertools import chain
-
+# sys.setdefaultencoding("utf-8")
 
 def get_vocab(files, vocab_file):
     """
@@ -52,9 +52,9 @@ def get_vocab(files, vocab_file):
     sorted_vocab = sorted([(v, c) for v, c in vocab.items()],
             key=lambda x: x[1],
             reverse=True)
-    with open(vocab_file, 'w') as outf:
+    with open(vocab_file, 'w',encoding="UTF-8") as outf:
         for w, c in sorted_vocab:
-            print('{}\t{}'.format(w.encode('utf-8'), c), file=outf)
+            print('{}\t{}'.format(w, c), file=outf)
             # outf.write('{}\t{}'.format(w.encode('utf-8'), c))
 
 if __name__ == '__main__':

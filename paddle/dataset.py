@@ -27,7 +27,7 @@ import random
 import sys
 # import paddle.v2 as paddle
 
-from preprocess import find_best_question_match
+from utils.preprocess import find_best_question_match
 
 logger = logging.getLogger("paddle")
 logger.setLevel(logging.INFO)
@@ -98,7 +98,7 @@ class Dataset(object):
             assigned to index 0. Tokens in this dict are indexed from 1.
         """
         vocab = {}
-        with open(vocab_file, 'r') as vf:
+        with open(vocab_file, 'r',encoding='utf-8') as vf:
             ln_cnt = 1
             for line in vf:
                 if vocab_size > 0 and ln_cnt > vocab_size - 1:
@@ -372,10 +372,20 @@ if __name__ == '__main__':
             max_p_len=300,
             is_infer=False,
             append_raw=False,
-            vocab_size=119670)
-
+            vocab_size=107378)
     # test reader
     reader = dataset.create_reader()
+    k=[]
     for r in reader():
-        print(r)
+        k.append(r)
 
+
+#
+# dataset = DuReaderYesNo(file_names=data,vocab_file=vocab,preload=False,max_p_len=300,is_infer=False,append_raw=False,vocab_size=107378)
+# dataset2 = DuReaderQA(file_names=data,vocab_file=vocab,preload=False,max_p_len=300,is_infer=False,append_raw=False,vocab_size=119670)
+# test reader
+# reader = dataset.create_reader()
+#
+# k=[]
+# for r in reader():
+#     k.append(r)
